@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<?php include_once('./views/head.html');?>
+	<body>
+		<?php include_once('./views/google_tag_body.html');?>
+		<?php include_once('./views/header.html');?>
+		
+		<div class="top">
+			<div class="top_image">
+				<img src="download/image_<?php echo $pickup['id'];?>_<?php echo $pickup['file_code'];?>.png">
+			</div>
+			<p class="all"><a href="list.php">全ての素材をみる</a></p>
+			<?php include_once('./views/search.html');?>
+			<h2>新着</h2>
+			<div class="wrapper">
+			<?php foreach($data as $row): ?>
+				<div class="box">
+					<div>
+						<a href="detail.php?get=<?php echo $row['id'];?>">
+							<img src="image/image_<?php echo $row['id'];?>_<?php echo $row['file_code'];?>.png">
+						</a>
+					</div>
+					<h4><?php echo $row['title'];?></h4>
+					<?php if(!empty($row['high'])){?>
+					<p><span class="tag">高解像度あり</span></p>
+					<?php }?>
+				</div>
+			<?php endforeach; ?>
+			</div>
+			<div class="category">
+				<h4>カテゴリ</h4>
+				<?php foreach($categories as $category){?>
+					<a href="list.php?tag=<?php echo $category['name']?>"><?php echo $category['name']?></a>
+				<?php }?>
+			</div>
+		</div>
+
+		<?php include_once('./views/footer.html');?>		
+	</body>
+</html>
